@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useProvider } from "../context";
 
-const BarreDeMana =()=> {
-
-  const [mana, setMana] = useState(100);
+const BarreDeMana = () => {
+  const { mana } = useProvider();
 
   const barreStyle = {
     width: `${mana}%`,
@@ -16,6 +16,6 @@ const BarreDeMana =()=> {
       </div>
     </div>
   );
-}
+};
 
 export default BarreDeMana;

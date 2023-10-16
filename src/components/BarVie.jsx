@@ -1,21 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
+import { useProvider } from "../context";
 
 const BarreDeVie = () => {
+  const { health } = useProvider();
 
-  const [vie, setVie] = useState(100);
-  
   const barreStyle = {
-    width: `${vie}%`,
-    backgroundColor: vie > 30 ? 'red' : 'red',
+    width: `${health}%`,
+    backgroundColor: health > 30 ? "red" : "red",
   };
 
   return (
     <div className="barre-de-vie">
       <div className="barre" style={barreStyle}>
-        {vie}%
+        {health}%
       </div>
     </div>
   );
-}
+};
 
 export default BarreDeVie;

@@ -1,21 +1,21 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useProvider } from "../context";
 
 const BarreDeSTM = () => {
-
-  const [stm, setSTM] = useState(100)
+  const { stamina } = useProvider();
 
   const barreStyle = {
-    width: `${stm}%`,
-    backgroundColor: stm > 30 ? "green" : "red",
+    width: `${stamina}%`,
+    backgroundColor: stamina > 30 ? "green" : "red",
   };
 
   return (
     <div className="barre-de-stamina">
       <div className="barre" style={barreStyle}>
-        {stm}%
+        {stamina}%
       </div>
     </div>
   );
-}
+};
 
 export default BarreDeSTM;
