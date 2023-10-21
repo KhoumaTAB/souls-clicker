@@ -1,6 +1,6 @@
-import { useEffect, useCallback } from "react";
-import { useProvider } from "../context";
-import { enemyList } from "./Enemies";
+import {useEffect, useCallback} from "react";
+import {useProvider} from "../context";
+import {enemyList} from "./Enemies";
 
 export const Enemy = () => {
   const {
@@ -9,22 +9,24 @@ export const Enemy = () => {
     mobHealth,
     setMobHealth,
     damageAuto,
-    damagePerClick,
+    damagePerClick, setDamageEnemy
   } = useProvider();
 
   const decreasePoint = useCallback((damage = damageAuto) => {
-    if (mobHealth > 1) {
+    if (mobHealth - damage > 0) {
       setMobHealth(mobHealth - damage);
     } else {
-      if(level === enemyList.length - 1){
+      if (level === enemyList.length - 1) {
         setLevel(0);
         setMobHealth(enemyList[0].points);
+        setDamageEnemy(enemyList[0].damage);
       } else {
         setLevel(level + 1);
         setMobHealth(enemyList[level + 1].points);
+        setDamageEnemy(enemyList[level + 1].damage);
       }
     }
-  }, [damageAuto, level, setLevel, setMobHealth, mobHealth]);
+  }, [damageAuto, level, setLevel, setMobHealth, mobHealth, setDamageEnemy]);
 
   useEffect(() => {
     const autoInterval = setInterval(decreasePoint, 1000);
@@ -36,7 +38,8 @@ export const Enemy = () => {
 
   useEffect(() => {
     setMobHealth(enemyList[level]["points"]);
-  }, [level, setMobHealth]);
+    setDamageEnemy(enemyList[level]["damage"])
+  }, [level, setDamageEnemy, setMobHealth]);
 
   return (
     <div>
@@ -47,7 +50,7 @@ export const Enemy = () => {
       <img
         src={enemyList[level].imgSrc}
         onClick={() => decreasePoint(damagePerClick)}
-        style={{ cursor: "pointer" }}
+        style={{cursor: "pointer"}}
       />
     </div>
   );
