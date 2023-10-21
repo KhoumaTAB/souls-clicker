@@ -1,0 +1,17 @@
+.barre-de-vie {
+  display: grid;
+  background-color: rgba(255, 0, 0, 0.8);
+
+  & span {
+    grid-area: 1 / 1 / 2 / 2;
+    z-index: 10;
+  }
+
+  & .barre {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
+
+.personnage {
+  background-color: #fff;
+}

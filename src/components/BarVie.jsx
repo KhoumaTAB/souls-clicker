@@ -1,12 +1,14 @@
 import {useCallback, useEffect} from "react";
 import {useProvider} from "../context";
 import {enemyList} from "./Enemies.jsx";
+import "../style/index.scss";
 
 const BarreDeVie = () => {
-  const {health, setHealth, damageEnemy, setLevel, setMobHealth, setDamageEnemy} = useProvider();
+  const {health, healthMax, setHealth, damageEnemy, setLevel, setMobHealth, setDamageEnemy} = useProvider();
 
   const barreStyle = {
     width: `${health}%`,
+    height: 25,
     backgroundColor: health > 30 ? "red" : "red",
   };
 
@@ -31,11 +33,8 @@ const BarreDeVie = () => {
 
   return (
     <div className="barre-de-vie">
+      <span>{health}/{healthMax} PV</span>
       <div className="barre" style={barreStyle}>
-        {health}%
-      </div>
-      <div className="barre" style={barreStyle}>
-        {health}%
       </div>
     </div>
   );

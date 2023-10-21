@@ -1,8 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import {createContext, useContext, useState} from "react";
 
 export const NewContext = createContext();
 
-export const ContextProvider = ({ children }) => {
+export const ContextProvider = ({children}) => {
   const [level, setLevel] = useState(0);
 
   //Enemy
@@ -13,6 +13,7 @@ export const ContextProvider = ({ children }) => {
   const [damageAuto, setDamageAuto] = useState(1);
   const [damagePerClick, setDamagePerClick] = useState(1);
   const [health, setHealth] = useState(100);
+  const [healthMax, setHealthMax] = useState(100);
   const [stamina, setStamina] = useState(100);
   const [mana, setMana] = useState(100);
 
@@ -34,7 +35,7 @@ export const ContextProvider = ({ children }) => {
         stamina,
         setStamina,
         mana,
-        setMana,
+        setMana, healthMax, setHealthMax
       }}
     >
       {children}
