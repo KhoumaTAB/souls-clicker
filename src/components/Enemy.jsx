@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useCallback } from "react";
 import { useProvider } from "../context";
 import { enemyList } from "./Enemies";
 
-function Enemy() {
+export const Enemy = () => {
   const {
     level,
     setLevel,
@@ -12,14 +12,19 @@ function Enemy() {
     damagePerClick,
   } = useProvider();
 
-  const decreasePoint = (damage = damageAuto) => {
+  const decreasePoint = useCallback((damage = damageAuto) => {
     if (mobHealth > 1) {
       setMobHealth(mobHealth - damage);
     } else {
-      setLevel(level + 1);
-      setMobHealth(enemyList[level + 1].points);
+      if(level === enemyList.length - 1){
+        setLevel(0);
+        setMobHealth(enemyList[0].points);
+      } else {
+        setLevel(level + 1);
+        setMobHealth(enemyList[level + 1].points);
+      }
     }
-  };
+  }, [damageAuto, level, setLevel, setMobHealth, mobHealth]);
 
   useEffect(() => {
     const autoInterval = setInterval(decreasePoint, 1000);
@@ -47,5 +52,3 @@ function Enemy() {
     </div>
   );
 }
-
-export default Enemy;

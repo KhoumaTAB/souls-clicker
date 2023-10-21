@@ -1,4 +1,4 @@
-import Enemy from "./components/Enemy";
+import {Enemy} from "./components/Enemy";
 import "./App.css";
 import { Perso } from "./components/Perso";
 
