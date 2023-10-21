@@ -1,7 +1,8 @@
 import {createContext, useContext, useState} from "react";
 
-export const NewContext = createContext();
+export const NewContext = createContext(null);
 
+// eslint-disable-next-line react/prop-types
 export const ContextProvider = ({children}) => {
   const [level, setLevel] = useState(0);
 
@@ -15,7 +16,9 @@ export const ContextProvider = ({children}) => {
   const [health, setHealth] = useState(100);
   const [healthMax, setHealthMax] = useState(100);
   const [stamina, setStamina] = useState(100);
+  const [staminaMax, setStaminaMax] = useState(100);
   const [mana, setMana] = useState(100);
+  const [manaMax, setManaMax] = useState(100);
 
   return (
     <NewContext.Provider
@@ -35,7 +38,13 @@ export const ContextProvider = ({children}) => {
         stamina,
         setStamina,
         mana,
-        setMana, healthMax, setHealthMax
+        setMana,
+        healthMax,
+        setHealthMax,
+        staminaMax,
+        setStaminaMax,
+        manaMax,
+        setManaMax
       }}
     >
       {children}
@@ -43,4 +52,5 @@ export const ContextProvider = ({children}) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useProvider = () => useContext(NewContext);

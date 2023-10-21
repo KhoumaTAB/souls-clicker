@@ -8,8 +8,7 @@ const BarreDeVie = () => {
 
   const barreStyle = {
     width: `${health}%`,
-    height: 25,
-    backgroundColor: health > 30 ? "red" : "red",
+    backgroundColor: "red",
   };
 
   const damageEnemyAuto = useCallback(() => {
@@ -32,7 +31,7 @@ const BarreDeVie = () => {
   }, [damageEnemyAuto]);
 
   return (
-    <div className="barre-de-vie">
+    <div className="barre-stat">
       <span>{health}/{healthMax} PV</span>
       <div className="barre" style={barreStyle}>
       </div>

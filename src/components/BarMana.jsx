@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useProvider } from "../context";
+import {useProvider} from "../context";
+import "../style/index.scss";
 
 const BarreDeMana = () => {
-  const { mana } = useProvider();
+  const {mana, manaMax} = useProvider();
 
   const barreStyle = {
     width: `${mana}%`,
-    backgroundColor: mana > 30 ? "blue" : "blue",
+    backgroundColor: "blue",
   };
 
   return (
-    <div className="barre-de-mana">
+    <div className="barre-stat">
+      <span>{mana}/{manaMax}</span>
       <div className="barre" style={barreStyle}>
-        {mana}%
       </div>
     </div>
   );

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useProvider } from "../context";
+import {useProvider} from "../context";
+import "../style/index.scss";
 
 const BarreDeSTM = () => {
-  const { stamina } = useProvider();
+  const {stamina, staminaMax} = useProvider();
 
   const barreStyle = {
     width: `${stamina}%`,
-    backgroundColor: stamina > 30 ? "green" : "red",
+    backgroundColor: "green",
   };
 
   return (
-    <div className="barre-de-stamina">
+    <div className="barre-stat">
+      <span>{stamina}/{staminaMax}</span>
       <div className="barre" style={barreStyle}>
-        {stamina}%
       </div>
     </div>
   );
