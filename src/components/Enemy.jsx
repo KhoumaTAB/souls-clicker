@@ -9,12 +9,22 @@ export const Enemy = () => {
     mobHealth,
     setMobHealth,
     damageAuto,
-    damagePerClick, setDamageEnemy
+    damagePerClick,
+    setDamageEnemy,
+    setStamina,
+    stamina,
+    setMana,
+    mana
   } = useProvider();
 
-  const decreasePoint = useCallback((damage = damageAuto) => {
+  const decreasePoint = useCallback((damage = damageAuto, type = 'auto') => {
     if (mobHealth - damage > 0) {
-      setMobHealth(mobHealth - damage);
+      if (mana !== 0 && type === 'auto') {
+        setMobHealth(mobHealth - damage);
+        setMana(mana - 1);
+      } else if (type === 'click') {
+        setMobHealth(mobHealth - damage);
+      }
     } else {
       if (level === enemyList.length - 1) {
         setLevel(0);
@@ -26,7 +36,14 @@ export const Enemy = () => {
         setDamageEnemy(enemyList[level + 1].damage);
       }
     }
-  }, [damageAuto, level, setLevel, setMobHealth, mobHealth, setDamageEnemy]);
+  }, [damageAuto, mobHealth, mana, setMobHealth, setMana, level, setLevel, setDamageEnemy]);
+
+  const handleClickDamage = () => {
+    if (stamina !== 0) {
+      decreasePoint(damagePerClick, 'click')
+      setStamina(stamina - 1);
+    }
+  }
 
   useEffect(() => {
     const autoInterval = setInterval(decreasePoint, 1000);
@@ -49,7 +66,8 @@ export const Enemy = () => {
       </h2>
       <img
         src={enemyList[level].imgSrc}
-        onClick={() => decreasePoint(damagePerClick)}
+        alt={enemyList[level].Nom}
+        onClick={() => handleClickDamage()}
         style={{cursor: "pointer"}}
       />
     </div>

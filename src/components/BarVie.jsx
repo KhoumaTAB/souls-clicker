@@ -32,7 +32,7 @@ const BarreDeVie = () => {
 
   return (
     <div className="barre-stat">
-      <span>{health}/{healthMax} PV</span>
+      <span>{health}/{healthMax}</span>
       <div className="barre" style={barreStyle}>
       </div>
     </div>
