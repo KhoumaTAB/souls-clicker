@@ -15,7 +15,9 @@ export const Enemy = () => {
     setStamina,
     stamina,
     setMana,
-    mana
+    mana,
+    souls,
+    setSouls
   } = useProvider();
 
   const decreasePoint = useCallback((damage = damageAuto, type = 'auto') => {
@@ -27,6 +29,7 @@ export const Enemy = () => {
         setMobHealth(mobHealth - damage);
       }
     } else {
+      setSouls(souls + enemyList[level].souls)
       if (level === enemyList.length - 1) {
         setLevel(0);
         setMobHealth(enemyList[0].points);

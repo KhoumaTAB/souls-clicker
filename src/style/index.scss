@@ -42,3 +42,12 @@
     }
   }
 }
+
+
+.souls {
+  background-color: red;
+
+  & span {
+    color: #fff;
+  }
+}

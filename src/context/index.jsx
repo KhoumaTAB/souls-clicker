@@ -13,6 +13,7 @@ export const ContextProvider = ({children}) => {
   //Personnage
   const [damageAuto, setDamageAuto] = useState(1);
   const [damagePerClick, setDamagePerClick] = useState(1);
+  const [souls, setSouls] = useState(0)
 
   //Personnage - Vie
   const [health, setHealth] = useState(100);
@@ -53,7 +54,13 @@ export const ContextProvider = ({children}) => {
         staminaMax,
         setStaminaMax,
         manaMax,
-        setManaMax, regenHealth, setRegenHealth, regenStamina, setRegenStamina, regenMana, setRegenMana
+        setManaMax,
+        regenHealth,
+        setRegenHealth,
+        regenStamina,
+        setRegenStamina,
+        regenMana,
+        setRegenMana, souls, setSouls
       }}
     >
       {children}
