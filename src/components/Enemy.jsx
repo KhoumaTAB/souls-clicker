@@ -1,6 +1,7 @@
 import {useEffect, useCallback} from "react";
 import {useProvider} from "../context";
 import {enemyList} from "./Enemies";
+import {useInterval} from "../functions/useInterval.jsx";
 
 export const Enemy = () => {
   const {
@@ -45,13 +46,9 @@ export const Enemy = () => {
     }
   }
 
-  useEffect(() => {
-    const autoInterval = setInterval(decreasePoint, 1000);
-
-    return () => {
-      clearInterval(autoInterval);
-    };
-  }, [decreasePoint]);
+  useInterval(() => {
+    decreasePoint();
+  }, 1000);
 
   useEffect(() => {
     setMobHealth(enemyList[level]["points"]);

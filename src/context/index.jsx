@@ -13,12 +13,21 @@ export const ContextProvider = ({children}) => {
   //Personnage
   const [damageAuto, setDamageAuto] = useState(1);
   const [damagePerClick, setDamagePerClick] = useState(1);
+
+  //Personnage - Vie
   const [health, setHealth] = useState(100);
   const [healthMax, setHealthMax] = useState(100);
+  const [regenHealth, setRegenHealth] = useState(10);
+
+  //Personnage - Stamina
   const [stamina, setStamina] = useState(100);
   const [staminaMax, setStaminaMax] = useState(100);
+  const [regenStamina, setRegenStamina] = useState(10);
+
+  // Personnage - Mana
   const [mana, setMana] = useState(100);
   const [manaMax, setManaMax] = useState(100);
+  const [regenMana, setRegenMana] = useState(5);
 
   return (
     <NewContext.Provider
@@ -44,7 +53,7 @@ export const ContextProvider = ({children}) => {
         staminaMax,
         setStaminaMax,
         manaMax,
-        setManaMax
+        setManaMax, regenHealth, setRegenHealth, regenStamina, setRegenStamina, regenMana, setRegenMana
       }}
     >
       {children}

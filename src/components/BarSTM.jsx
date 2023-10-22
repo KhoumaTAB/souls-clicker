@@ -1,13 +1,26 @@
 import {useProvider} from "../context";
 import "../style/index.scss";
+import {useInterval} from "../functions/useInterval.jsx";
 
 const BarreDeSTM = () => {
-  const {stamina, staminaMax} = useProvider();
+  const {stamina, setStamina, staminaMax, regenStamina} = useProvider();
 
   const barreStyle = {
     width: `${stamina}%`,
     backgroundColor: "green",
   };
+
+  const handleRegenStamina = () => {
+    if (stamina + regenStamina >= staminaMax) {
+      setStamina(staminaMax);
+    } else {
+      setStamina(stamina + regenStamina);
+    }
+  }
+
+  useInterval(() => {
+    handleRegenStamina();
+  }, 10000);
 
   return (
     <div className="barre-stat">

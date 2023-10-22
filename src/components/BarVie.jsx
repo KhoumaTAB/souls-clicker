@@ -1,10 +1,21 @@
-import {useCallback, useEffect} from "react";
+import {useCallback} from "react";
 import {useProvider} from "../context";
 import {enemyList} from "./Enemies.jsx";
 import "../style/index.scss";
+import {useInterval} from "../functions/useInterval.jsx";
 
 const BarreDeVie = () => {
-  const {health, healthMax, setHealth, damageEnemy, setLevel, setMobHealth, setDamageEnemy} = useProvider();
+  const {
+    health,
+    healthMax,
+    setHealth,
+    damageEnemy,
+    setLevel,
+    setMobHealth,
+    setDamageEnemy,
+    setStamina,
+    setMana
+  } = useProvider();
 
   const barreStyle = {
     width: `${health}%`,
@@ -17,18 +28,16 @@ const BarreDeVie = () => {
       setMobHealth(enemyList[0].points);
       setDamageEnemy(enemyList[0].damage);
       setHealth(100);
+      setStamina(100);
+      setMana(100);
     } else {
       setHealth(health - damageEnemy);
     }
-  }, [damageEnemy, health, setDamageEnemy, setHealth, setLevel, setMobHealth]);
+  }, [damageEnemy, health, setDamageEnemy, setHealth, setLevel, setMana, setMobHealth, setStamina]);
 
-  useEffect(() => {
-    const autoInterval = setInterval(damageEnemyAuto, 1000);
-
-    return () => {
-      clearInterval(autoInterval);
-    };
-  }, [damageEnemyAuto]);
+  useInterval(() => {
+    damageEnemyAuto();
+  }, 1000);
 
   return (
     <div className="barre-stat">
