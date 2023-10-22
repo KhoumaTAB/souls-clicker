@@ -24,17 +24,22 @@
   background-color: #151515;
 
   & div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
     margin: 10px;
     cursor: pointer;
     height: 15%;
 
     & img {
+      grid-area: 1 / 1 / 2 / 2;
       width: 40px;
       height: 40px;
+      justify-self: center;
+      align-self: center;
+    }
+
+    & img[alt="cadenas"] {
+      width: 20px;
+      height: 20px;
     }
 
     & span {
