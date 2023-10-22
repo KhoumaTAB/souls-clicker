@@ -1,13 +1,15 @@
 import {Enemy} from "./components/Enemy";
 import "./App.css";
-import { Perso } from "./components/Perso";
+import {Perso} from "./components/Perso";
+import {Inventory} from "./components/Inventory.jsx";
 
 function App() {
   return (
     <>
       <div>
-        <Enemy />
-        <Perso />
+        <Enemy/>
+        <Perso/>
+        <Inventory/>
       </div>
     </>
   );
